@@ -1,0 +1,32 @@
+.nav-bg-color {
+  background-color: #e63946;
+}cd
+
+#navbarContent ul > li > a {
+  color: #f1faee;
+}
+
+button[type="submit"] {
+  background-color: #457b9d;
+  border-width: 1px;
+  border-color: #a8dadc;
+}
+
+/* button[data-bs-toggle="collapse"] {
+    background-color: beige;
+} */
+body {
+  background-color: #1d3557;
+}
+
+footer {
+  background-color: #2b4f82;
+  position: fixed;
+  height: 50px;
+  bottom: 0;
+  width: 100%;
+}
+
+.loremtext > p::first-line {
+  color: aqua;
+}

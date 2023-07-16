@@ -1,0 +1,15 @@
+# Book Finder
+#### Video Demo:  https://youtu.be/MNhnjrk8xtM
+#### Description:
+Book Finder is a website created to search for books and return a link to Amazon or Google Book Store.
+
+Book Finder was built using the Flask framework and the Google Books API.
+
+When you open the directory you will find `app.py`, that is where all the logic of the website goes. The brain of this project `search function`  in `app.py`, get the user submitted info and check if the user entered anything in the form. Next, the variable `url` contains the link to the Google Books API. The link was optimized using google own filters to only receive needed information such is the `ISBN, title, author, thumbnail, published date, and link to the Google store`. Next, the function render the search template `results.html`, passing in the data as a list of JSON.
+
+In `result.html`, we check if the use search was invalid and print out ***Invalid Search!***. If the search result is valid, then go through each of the list and parse the data. The author of each book is rendered as a link in case the user wants to see how if the author have written any other books! The link will take them to `"/author/author name"`.
+
+In the `author` function, we use a filter to only search by author name and render the result to the page using `render_template`, using the same process like `results.html`.
+
+That's it for my project, Thank you!
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               

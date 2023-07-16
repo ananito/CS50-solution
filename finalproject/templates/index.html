@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+
+{% block title %}Book Finder: Home {% endblock %}
+
+{% block body %}
+<div class="text-center py-5">
+    <h1>Welcome</h1>
+    <p>You can only find books by using the search function!</p>
+    <form action="/search" class="mt-4" method="get">
+        <div class="col-md-12">
+            <input autocomplete="off" autofocus class="form-control form-control-md mb-4 mx-auto w-50" name="q"
+                placeholder="Search for Books" type="search">
+            <button type="submit" class="btn btn-light">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

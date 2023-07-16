@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+           window.addEventListener("DOMContentLoaded", function(){
+            // select buttons named part1
+            var part1 = document.querySelectorAll(".part1q");
+
+            // loop throught the nodeList
+            for (let i = 0; i < part1.length; i++) {
+
+
+                // add eventent listener for each of them
+                part1[i].addEventListener("click", function (e) {
+
+
+                    //console.log(e.target.innerHTML);
+                    // check if the current button is venus which is the answer
+                    if (e.target.innerHTML === "Venus") {
+                        e.target.style.background = "green";
+                        document.querySelector("#answer1").innerHTML = "Correct!"
+                    } else {
+                        e.target.style.background = "red";
+                        document.querySelector("#answer1").innerHTML = "Incorrect!"
+                    }
+                });
+
+            }
+           });
+
+           function part2() {
+            var answer = document.querySelector("#part2q");
+            //console.log(answer.value);
+
+            if (answer.value === "2007") {
+                document.querySelector("#answer2").innerText = "Correct!"
+                answer.style.background = "green";
+            } else {
+                document.querySelector("#answer2").innerText = "Inorrect!"
+                answer.style.background = "red";
+            }
+           }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>Which planet is the hottest in the solar system?</h3>
+                <form onsubmit="return false;">
+                    <button class="part1q" type="submit" >Venus</button>
+                    <button class="part1q" type="submit" >Mars</button>
+                    <button class="part1q" type="submit" >Earth</button>
+                    <button class="part1q" type="submit" >Mercury</button>
+                    <button class="part1q" type="submit" >Juipter</button>
+                </form>
+                <p id="answer1"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>What year was the very first model of the iPhone released?</h3>
+                <form onsubmit="part2(); return false;">
+                    <input type="text" name="part2q" id="part2q" placeholder="Answer">
+                    <button type="submit">Enter</button>
+                </form>
+                <p id="answer2"></p>
+            </div>
+        </div>
+    </body>
+</html>

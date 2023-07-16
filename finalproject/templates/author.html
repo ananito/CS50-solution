@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+
+{% block title %} Author: {{author}}{% endblock %}
+
+{% block body %}
+<div class="text-center  py-5">
+    <h4>Some Books By {{author}}</h4>
+    <form action="/search" class="mt-4" method="get">
+        <div class="col-md-12">
+            <input autocomplete="off" autofocus class="form-control form-control-md mb-4 mx-auto w-50" name="q" placeholder="Search for Books" type="search">
+            <button type="submit" class="btn btn-light">Submit</button>
+        </div>
+    </form>
+</div>
+ <div class="container py-2 mt-5 border">
+    <!-- <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-2" >
+                <img src="http://books.google.com/books/content?id=djf_RQAACAAJ&printsec=frontcover&img=1&zoom=1" alt="" class="img-thumbnail thumbnail">
+            </div>
+            <div class="col-8">
+                <h5 class="card-title">Harry Potter and the Philosopher stone</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="align-items-end card-text text w-75">Harry Potter thinks he is an ord</p>
+                  <div class="col bottom-50">
+                    hey
+                  </div>
+            </div>
+            <div class="col">adsf</div>
+          </div>
+        </div>
+    </div> -->
+
+{% if books %}
+{% for book in books %}
+  <div class="container mb-2">
+    <div class="row">
+      <div class="col-md-2">
+          <img src="{% if book['volumeInfo']['imageLinks'] %} {{ book['volumeInfo']['imageLinks']['thumbnail']}} {% else %} {{ url_for('static', filename = 'nothumbnail.png') }} {% endif%} " alt="" class="img-thumbnail thumbnail">
+      </div>
+      <div class="col-md-8">
+        <h5 class="card-title text-warp">{{ book["volumeInfo"]["title"] }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{% for author in book["volumeInfo"]["authors"] %} <a href="{{url_for('author',name = author)}}" rel="noopener noreferrer">{{author}}</a> {% endfor  %}</h6>
+        <p class="card-text">{{book["volumeInfo"]["description"]|truncate|default("No description")}}</p>
+        <div class="align-self-end">
+          <p>
+            {% for isbn in book["volumeInfo"]["industryIdentifiers"]%}
+              {% if "ISBN_10" in isbn["type"] %} 
+                ISBN-10: {{isbn["identifier"]|default("-")}} 
+              {%else%}  
+                ISBN-13:  {{isbn["identifier"]|default("-")}}
+              {% endif %}
+            {% endfor %}
+          </p>
+          <p>Published: {{book["volumeInfo"]["publishedDate"]}}</p>
+        </div>
+      </div>
+      <div class="col-md-2">
+        {% for isbn in book["volumeInfo"]["industryIdentifiers"]%}
+        {% if "ISBN_10" in isbn["type"] %}
+        <ul class="list-group list-group-flush">
+
+          <li class="list-group-item"><a class="text-decoration-none" href="https://www.amazon.com/s?k={{ book['volumeInfo']['title'] }}" target="_blank" rel="noopener noreferrer">Amazon</a></li>
+          <li class="list-group-item"><a class="text-decoration-none" href="{{ book['volumeInfo']['infoLink']}}" target="_blank" rel="noopener noreferrer">Google Books</a></li>
+          <li class="list-group-item"><a class="text-decoration-none" href="https://b-ok.org/s/{{ book['volumeInfo']['title'] }} {{ book['volumeInfo']['authors'][0]}}" target="_blank" rel="noopener noreferrer">Z-library</a> </li>
+        </ul>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endfor %}
+{% else %}
+<h1>Invalid search!</h1>
+{%endif%}
+ </div>
+{% endblock %}

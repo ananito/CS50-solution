@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+   <table class="table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for history in histories %}
+            <tr>
+                <td>{{history.symbol}}</td>
+                <td>{{history.shares}}</td>
+                <td>{{history.share_price}}</td>
+                <td>{{history.date}}</td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+   </table>
+{% endblock %}
